@@ -353,6 +353,7 @@ function setShoot() {
            logger.fatal(e);
            logger.fatal("nouvelle config");
            //flashSwitch();
+           process.exit();
          });
         });
 
@@ -362,6 +363,7 @@ function setShoot() {
           logger.fatal(e);
           logger.fatal('configuré');
           //flashSwitch();
+          process.exit();
         });
 
     } else {
