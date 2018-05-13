@@ -1,0 +1,95 @@
+/* Overlay style */
+
+.overlay {
+  position   : fixed;
+  top        : 0;
+  left       : 0;
+  width      : 100%;
+  height     : 100%;
+  background : rgba(153,204,51,0.9);
+}
+
+/* Overlay closing cross */
+
+.overlay .overlay-close {
+  z-index     : 100;
+  position    : absolute;
+  top         : 20px;
+  right       : 20px;
+  width       : 80px;
+  height      : 80px;
+  color       : transparent;
+  overflow    : hidden;
+  border      : none;
+  background  : url(../img/cross.png) no-repeat center center;
+  outline     : none;
+  text-indent : 200%;
+}
+
+/* Menu style */
+
+.overlay nav {
+  position          : relative;
+  top               : 50%;
+  height            : 60%;
+  text-align        : center;
+  -webkit-transform : translateY(-50%);
+  transform         : translateY(-50%);
+}
+
+.overlay ul li {
+  display    : block;
+  height     : 20%;
+  height     : calc(100% / 5);
+  min-height : 54px;
+}
+
+/* texte centre style */
+
+.overlay .rebour {
+  position          : relative;
+  top               : 50%;
+  height            : 60%;
+  text-align        : center;
+  -webkit-transform : translateY(-50%);
+  transform         : translateY(-50%);
+	display    : block;
+	height     : 20%;
+	height     : calc(100% / 5);
+  font-size        : 1000%;
+}
+
+
+/* Effects */
+
+.overlay-door {
+  visibility         : hidden;
+  left               : 50%;
+  width              : 0;
+  -webkit-transform  : translateX(-50%);
+  transform          : translateX(-50%);
+  -webkit-transition : width 0.5s 0.3s,
+                       visibility 0s 0.8s;
+  transition         : width 0.5s 0.3s,
+                       visibility 0s 0.8s;
+}
+
+.overlay-door.open {
+  visibility         : visible;
+  width              : 100%;
+  -webkit-transition : width 0.5s;
+  transition         : width 0.5s;
+}
+
+@media
+  screen
+  and (max-height : 30.5em) {
+  .overlay nav {
+    height    : 70%;
+    font-size : 34px;
+  }
+
+  .overlay ul li {
+    min-height : 34px;
+  }
+}
