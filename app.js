@@ -480,8 +480,8 @@ function impressionNow() {
   io.emit('photo', "");
   //io.emit('message', "Veuillez patienter !</br> Impression en cours");
   io.emit('message',1);
-  var text = 'lp -d Canon_SELPHY_CP1200 -o landscape -o fit-to-page ' + global.lienImage;
-  //var text = 'lp -d Canon_SELPHY_CP1200 -o landscape .'+global.lienImage;
+  //var text = 'lp -d Canon_SELPHY_CP1200 -o landscape -o fit-to-page ' + global.lienImage;
+  var text = 'lp -d Canon_SELPHY_CP1200 -o landscape .'+global.lienImage;
   //var text = "ls";
   exec(text, (e, stdout, stderr) => {
     logger.fatal(e);
