@@ -16,7 +16,7 @@ https://github.com/andreknieriem/photobooth
 https://github.com/SebastienUnderG/photobooth
 
 
-L'idée est de créé une activité durant le mariage; un photomaton autonome, simple et qui fonctionne sur Raspberry Pi 3
+L'idée est de créer une activité durant le mariage; un photomaton autonome, simple et qui fonctionne sur Raspberry Pi 3
 
 ![Finalement cela donne ça ](https://github.com/SebastienUnderG/MirrorMirrorOnTheScreen/blob/master/Illustrations/IMG_3645_no_exif.jpg "Finalement cela donne ça ")
 
