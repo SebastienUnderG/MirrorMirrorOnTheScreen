@@ -20,9 +20,6 @@ L'idée est de créé une activité durant le mariage; un photomaton autonome, s
 
 ![Finalement cela donne ça ](https://github.com/SebastienUnderG/MirrorMirrorOnTheScreen/blob/master/Illustrations/IMG_3645_no_exif.jpg "Finalement cela donne ça ")
 
-![alt text](https://raw.githubusercontent.com/SebastienUnderG/MirrorMirrorOnTheScreen/Illustrations/IMG_3645_no_exif.jpg)
-
-
 ## Installation
 
 L'enssemble du code fonctionne sur differentes librairie très simple :
