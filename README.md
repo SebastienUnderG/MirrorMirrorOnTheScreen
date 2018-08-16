@@ -71,6 +71,27 @@ pour des raisons étrange vous devez installer séparément les 3 prochaines dé
     sudo npm install --unsafe-perm --verbose pigpio
 
 
+## Cablage 
+
+![L'interieur](https://github.com/SebastienUnderG/MirrorMirrorOnTheScreen/blob/master/Illustrations/interieur.jpg "L'interieur")
+
+|          	|               	| X  	| X  	|               	|               	|
+|----------	|----------------	|----	|----	|---------------	|-----------------	|
+|          	| 3,3v           	| 1  	| 2  	| 5v            	| VCC HC-SR04     	|
+|          	| BCM 2 (SDA)    	| 3  	| 4  	| 5v            	| VCC Relay       	|
+|          	| BCM 3 (SCL)    	| 5  	| 6  	| Mass          	| GRD HC-SR04     	|
+|          	| BCM 4 (GPCLK0) 	| 7  	| 8  	| BCM 14 (TXD)  	| BTN 4           	|
+|          	| Mass           	| 9  	| 10 	| BCM 15 (RXD)  	| IN1 Relay       	|
+| BTN 1    	| BCM 17         	| 11 	| 12 	| BCM 18 (PWM0) 	|                 	|
+| BTN 2    	| BCM 27         	| 13 	| 14 	| Mass          	|                 	|
+| BTN 3    	| BCM 22         	| 15 	| 16 	| BCM 23        	| Trigger HC-SR04 	|
+| Mass BTN 	| 3,3v           	| 17 	| 18 	| BCM 24        	| Echo HC-SR04    	|
+|          	| BCM 10 (MOSI)  	| 19 	| 20 	| Mass          	| GRD Relay       	|
+|          	| BCM 9 (MISO)   	| 21 	| 22 	| BCM 25        	|                 	|
+|          	| BCM 11 (SCLK)  	| 23 	| 24 	| BCM 8 (CE0)   	|                 	|
+|          	| Mass           	| 25 	| 26 	| BCM 7 (CE1)   	|                 	|
+
+
 
 ## Usage
 
