@@ -73,6 +73,8 @@ pour des raisons étrange vous devez installer séparément les 3 prochaines dé
 
 ## Cablage 
 
+![L'interieur](https://github.com/SebastienUnderG/MirrorMirrorOnTheScreen/blob/master/Illustrations/interieur.jpg "L'interieur")
+
 |          	|               	| X  	| X  	|               	|               	|
 |----------	|----------------	|----	|----	|---------------	|-----------------	|
 |          	| 3,3v           	| 1  	| 2  	| 5v            	| VCC HC-SR04     	|
