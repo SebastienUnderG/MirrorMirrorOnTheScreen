@@ -528,3 +528,4 @@ function impressionNow() {
 
 setInterval(loop, 5000);
 server.listen(8080);
+console.log('Version BETA');
