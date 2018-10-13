@@ -1,4 +1,3 @@
-
 var public = {};
 var loader = $('#loader');
 var countDown = 5;
@@ -8,9 +7,9 @@ var h = window.innerHeight;
 loader.width(w).height(h);
 
 function loader() {
-  loader.slideDown('slow', 'easeOutBounce', function () {
-      public.countdown(countDown, $('#counter'));
-  });
+    loader.slideDown('slow', 'easeOutBounce', function () {
+        public.countdown(countDown, $('#counter'));
+    });
 }
 
 
