@@ -1,56 +1,37 @@
 const Gpio = require('onoff').Gpio;
-let log4js = require('log4js');
-const logger = log4js.getLogger('things');
+
+import {configure, getLogger} from 'log4js';
+configure('./config_log.json');
+const logger = getLogger();
+
+
 let WatchJS = require("melanke-watchjs");
 let watch = WatchJS.watch;
-let unwatch = WatchJS.unwatch;
-let callWatchers = WatchJS.callWatchers;
+
 const exec = require('child_process').exec;
 
+var fileList = require('files');
 
 const relayA = new Gpio(15, 'out');
 const buttonA = new Gpio(17, 'in', 'both', {debounceTimeout: 500});
 const buttonB = new Gpio(27, 'in', 'both', {debounceTimeout: 50});
 const buttonC = new Gpio(22, 'in', 'both', {debounceTimeout: 50});
 const buttonD = new Gpio(14, 'in', 'both', {debounceTimeout: 500});
-// -----------
-
-
-log4js.configure({
-    appenders: {
-        dateFile: {
-            type: 'dateFile',
-            filename: 'mask.log',
-            pattern: 'yyyy-MM-dd-hh',
-            compress: true
-        },
-        out: {
-            type: 'stdout'
-        }
-    },
-    categories: {
-        default: {
-            appenders: [
-                'dateFile', 'out'
-            ],
-            level: 'trace'
-        }
-    }
-});
-
 
 //Administration
 
-let distance = {};
+let distance = {
+    minD: 10 * (1e6 / 34321) * 2, //zone minimum
+    maxD: 60 * (1e6 / 34321) * 2, //zone maximum
+    timeStep: 1000, //zone de statisme
+    updateTime: 200, //frequence de mise a jour de la position
+    step: 0, // init de l'étape
+    status: 0
+};
+
 relayA.writeSync(0);
 global.flash = 0;
-distance.minD = 10 * (1e6 / 34321) * 2; //zone minimum
-distance.maxD = 60 * (1e6 / 34321) * 2; //zone maximum
-distance.timeStep = 1000; //zone de statisme
-distance.updateTime = 200; //frequence de mise a jour de la position
-distance.step = 0; // init de l'étape
 global.presence = 0;
-distance.status = 0;
 
 
 // print process.argv
@@ -60,7 +41,6 @@ process.argv.forEach(function (val, index, array) {
         //passer en mode paramettre
         setShoot();
     }
-
 });
 
 
@@ -128,66 +108,6 @@ var fs = require('fs');
 var ent = require('ent');
 
 
-var fileList = [
-    {"url": "/snap.jpg", "file": "./images/1525872432182.jpg", "code": "", "type": "{'Content-Type': 'image/jpg'}"},
-    {"url": "/image.jpg", "file": "./images/set.jpg", "code": "", "type": "{'Content-Type': 'image/jpg'}"},
-    {"url": "/", "file": "./index.html", "code": "utf-8", "type": "{'Content-Type': 'text/html'}"},
-    {"url": "/style.css", "file": "./css/style.css", "code": "utf-8", "type": "{'Content-Type': 'text/css'}"},
-    {
-        "url": "/script.js",
-        "file": "./js/script.js",
-        "code": "utf-8",
-        "type": "{'Content-Type': 'application/javascript'}"
-    },
-    {
-        "url": "/idle_princess2.gif",
-        "file": "./resources/idle_princess2.gif",
-        "code": "",
-        "type": "{'Content-Type': 'image/gif'}"
-    },
-    {"url": "/favicon.ico", "file": "./resources/favicon.ico", "code": "", "type": "{'Content-Type': 'image/ico'}"},
-    {
-        "url": "/jquery-3.3.1.min.js",
-        "file": "./js/jquery-3.3.1.min.js",
-        "code": "utf-8",
-        "type": "{'Content-Type': 'application/javascript'}"
-    },
-    {
-        "url": "/modernizr.custom.js",
-        "file": "./js/modernizr.custom.js",
-        "code": "utf-8",
-        "type": "{'Content-Type': 'application/javascript'}"
-    },
-    {
-        "url": "/demo1.js",
-        "file": "./js/demo1.js",
-        "code": "utf-8",
-        "type": "{'Content-Type': 'application/javascript'}"
-    },
-    {
-        "url": "/classie.js",
-        "file": "./js/classie.js",
-        "code": "utf-8",
-        "type": "{'Content-Type': 'application/javascript'}"
-    },
-    {"url": "/normalize.css", "file": "./css/normalize.css", "code": "utf-8", "type": "{'Content-Type': 'text/css'}"},
-    {"url": "/style6.css", "file": "./css/style6.css", "code": "utf-8", "type": "{'Content-Type': 'text/css'}"},
-    {"url": "/valide.png", "file": "./resources/valide.png", "code": "", "type": "{'Content-Type': 'image/png'}"},
-    {"url": "/1.png", "file": "./resources/1.png", "code": "", "type": "{'Content-Type': 'image/png'}"},
-    {"url": "/2.png", "file": "./resources/2.png", "code": "", "type": "{'Content-Type': 'image/png'}"},
-    {"url": "/print.png", "file": "./resources/print.png", "code": "", "type": "{'Content-Type': 'image/png'}"},
-    {"url": "/refus.png", "file": "./resources/refus.png", "code": "", "type": "{'Content-Type': 'image/png'}"},
-    {"url": "/back.png", "file": "./resources/back.png", "code": "", "type": "{'Content-Type': 'image/png'}"},
-    {"url": "/photo.png", "file": "./resources/photo.png", "code": "", "type": "{'Content-Type': 'image/png'}"},
-    {"url": "/press.gif", "file": "./resources/press.gif", "code": "", "type": "{'Content-Type': 'image/gif'}"},
-    {"url": "/load.gif", "file": "./resources/load.gif", "code": "", "type": "{'Content-Type': 'image/gif'}"},
-    {
-        "url": "/BLKCHCRY.TTF",
-        "file": "./ttf/BLKCHCRY.TTF",
-        "code": "",
-        "type": "{'Content-Type': 'application/octet-stream'}"
-    }
-];
 
 // Chargement du fichier index.html affiché au client
 var server = http.createServer(function (req, res) {
@@ -295,7 +215,6 @@ buttonC.watch(function (err, value) {
 buttonD.watch(function (err, value) {
     if (value == "1") {
         setStatus0();
-
     }
 });
 
@@ -304,7 +223,6 @@ watch(distance, function () {
     if (global.presence == 1 && distance.status == 0) {
         setStatus1();
     }
-
 });
 
 var temperature = 0;
@@ -346,9 +264,7 @@ function loop() {
             console.log("5> " + goTimeout());
             goTimeout();
         }
-
     }
-
 }
 
 function goTimeout() {
@@ -369,8 +285,8 @@ function lastActivity(set = 0) {
 function setShoot() {
     distance.status = -1;
     //flashSwitch();
-    var fs = require("fs");
-    var text = "gphoto2 --capture-image-and-download --filename=images/set.jpg";
+    const fs = require("fs");
+    const text = "gphoto2 --capture-image-and-download --filename=images/set.jpg";
     fs.stat('images/set.jpg', function (err, stat) {
         if (err == null) {
             logger.fatal('fichier exist');
@@ -400,8 +316,6 @@ function setShoot() {
             console.log('Some other error: ', err.code);
         }
     });
-
-
 }
 
 
@@ -512,8 +426,6 @@ function impressionNow() {
     //var text = "ls";
     exec(text, (e, stdout, stderr) => {
         logger.fatal(e);
-
-
     });
     setTimeout(function () {
         console.log("1");

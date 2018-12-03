@@ -1,0 +1,22 @@
+{
+  appenders: {
+    dateFile: {
+      type: 'dateFile',
+      filename: 'mask.log',
+      pattern: 'yyyy-MM-dd-hh',
+      compress: true
+    },
+    out: {
+      type: 'stdout'
+    }
+  },
+  categories: {
+    default: {
+      appenders: [
+        'dateFile',
+        'out'
+      ],
+      level: 'trace'
+    }
+  }
+}

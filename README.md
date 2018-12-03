@@ -1,6 +1,8 @@
 
 # MirrorMirrorOnTheScreen
 
+_La documentation et une version TS/ES6 est en cours soyez patient_
+
 Implémentation du Photobooth en version NodeJS avec une interface Disney
 
 librement Inspiré de 2 projets :
