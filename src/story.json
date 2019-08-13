@@ -1,0 +1,37 @@
+{
+  "init": {
+    "message": {
+      "photo": "",
+      "distence": 0
+    },
+    "log": {
+      "debug": "%%% Remise à zero %%%"
+    },
+    "activity": {
+      "up": true,
+      "idle": 60000
+    },
+    "action": {
+      "flash": 0
+    },
+    "input": {
+      "ButtonA": "idle",
+      "ButtonB": {
+        "log": {
+          "debug": "CB"
+        }
+      }
+    }
+  },
+  "idle": {
+    "log": {
+      "debug": "idle ZERO"
+    }
+  },
+  "test" : {
+    "log": {
+      "debug": "TEST ZERO"
+    }
+
+  }
+}

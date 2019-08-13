@@ -1,0 +1,7 @@
+{
+  "shoot_set": "gphoto2 --capture-image-and-download --filename=",
+  "shoot": "gphoto2 --capture-image-and-download --filename=images/",
+  "src_photo_set": "images/set.jpg",
+  "dir": "/images/",
+  "file_extention": ".jpg"
+}
